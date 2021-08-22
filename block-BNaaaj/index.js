@@ -18,3 +18,5 @@ setTimeout(() => {
   console.log('non-blocking middle');
 }, 2000);
 console.log('last');
+var { readFile, readFileSync, unlike, fstat } = require('fs');
+var sync = readFileSync('./app.js');
