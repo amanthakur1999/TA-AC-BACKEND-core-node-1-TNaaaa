@@ -1,5 +1,6 @@
 var http = require('http');
 var fs = require('fs');
+var url = require('url');
 http
   .createServer((req, res) => {
     console.log(req, res);
@@ -61,3 +62,14 @@ function handle2(req, res) {
   }
 }
 server4.listen(2345);
+
+var server5 = http.createServer(handle3);
+function handle3(req, res) {
+  var parsedUrl = url.parse(req.url, true);
+  console.log(parsedUrl.pathname, req.url);
+  res.setHeader('Content-Type', 'application/json');
+  res.end(JSON.stringify(parsedUrl.query));
+}
+server5.listen(2346, () => {
+  console.log('server Listening on part 2346');
+});
